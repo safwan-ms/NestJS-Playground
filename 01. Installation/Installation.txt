@@ -1,0 +1,20 @@
+# 1. Install NestJS CLI globally
+npm install -g @nestjs/cli
+
+# 2. Create a new NestJS project
+nest new project-name
+
+# 3. Navigate into the project
+cd project-name
+
+# 4. Start the development server
+npm run start:dev
+
+# 5. Generate a users module
+nest g module users
+
+# 6. Generate a users controller
+nest g controller users
+
+# 7. Generate a users service
+nest g service users

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
@@ -27,14 +26,34 @@ export class UserService {
       },
     });
   }
-  findAll() {
-    return `This action returns all user`;
+  async findAll() {
+    return this.UserRepo.find({
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        avatarUrl: true,
+        role: true,
+        createdAt: true,
+      },
+      order: {
+        createdAt: 'DESC',
+      },
+    });
   }
 
   async findOne(id: number) {
     return this.UserRepo.findOne({
       where: { id },
-      select: ['firstName', 'lastName', 'avatarUrl', 'hashedRefreshToken'],
+      select: [
+        'id',
+        'firstName',
+        'lastName',
+        'avatarUrl',
+        'hashedRefreshToken',
+        'role',
+      ],
     });
   }
 

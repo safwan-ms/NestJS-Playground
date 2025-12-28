@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { Property } from './property.entity';
 import * as bcrypt from 'bcrypt';
+import { Role } from 'src/auth/enum/role.enum';
 
 @Entity()
 export class User {
@@ -37,6 +38,8 @@ export class User {
   })
   hashedRefreshToken: string | null;
 
+  @Column({ type: 'enum', enum: Role, default: Role.USER })
+  role: Role;
   @Column({ nullable: true })
   password: string;
 
